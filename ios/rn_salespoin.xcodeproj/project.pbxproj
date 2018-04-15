@@ -50,6 +50,14 @@
 		678F3D1CA6DB49C58827AF67 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D45B318CF72844EA88F458AF /* SimpleLineIcons.ttf */; };
 		2A4B639B99C04E3AA406B981 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24DC664F459F42509EB768A9 /* Zocial.ttf */; };
 		0C41671A21974C56940D6328 /* libRNShimmer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E073CD8AD76F4BBDBD1D6C47 /* libRNShimmer.a */; };
+		184C3887F551428FA3E7E4ED /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 357749560713434A828F08C4 /* RobotoCondensed-Bold.ttf */; };
+		C61CA8C100994DC3A82B96AA /* RobotoCondensed-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 769C6D0C576D414DA6519041 /* RobotoCondensed-BoldItalic.ttf */; };
+		487FBD69AA0B4B029611C0BD /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2643C0C379C47B1BF9BD90D /* RobotoCondensed-Italic.ttf */; };
+		751188710A1645BCAC5BE5F6 /* RobotoCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B0F0DC706D9417391D816F8 /* RobotoCondensed-Light.ttf */; };
+		C6BFF4E32E344C53AA5C514C /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98353BF7A4514159B3EEBA70 /* RobotoCondensed-LightItalic.ttf */; };
+		486519B91F1746478F31CBB1 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 206F3916C1834F9D9B38C852 /* RobotoCondensed-Regular.ttf */; };
+		760B92417B7040A1B8DE25A6 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5964B7CF15DA4A3BB3A0460B /* libAirMaps.a */; };
+		E7D1D51A81D64CA58AE8115C /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B139CDE119514E778AA6D176 /* libBVLinearGradient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,6 +378,16 @@
 		24DC664F459F42509EB768A9 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		308A425AD5B74E99AED651EA /* RNShimmer.xcodeproj */ = {isa = PBXFileReference; name = "RNShimmer.xcodeproj"; path = "../node_modules/react-native-shimmer/ios/RNShimmer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		E073CD8AD76F4BBDBD1D6C47 /* libRNShimmer.a */ = {isa = PBXFileReference; name = "libRNShimmer.a"; path = "libRNShimmer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		357749560713434A828F08C4 /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; name = "RobotoCondensed-Bold.ttf"; path = "../src/res/fonts/RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		769C6D0C576D414DA6519041 /* RobotoCondensed-BoldItalic.ttf */ = {isa = PBXFileReference; name = "RobotoCondensed-BoldItalic.ttf"; path = "../src/res/fonts/RobotoCondensed-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F2643C0C379C47B1BF9BD90D /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; name = "RobotoCondensed-Italic.ttf"; path = "../src/res/fonts/RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9B0F0DC706D9417391D816F8 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; name = "RobotoCondensed-Light.ttf"; path = "../src/res/fonts/RobotoCondensed-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		98353BF7A4514159B3EEBA70 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; name = "RobotoCondensed-LightItalic.ttf"; path = "../src/res/fonts/RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		206F3916C1834F9D9B38C852 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; name = "RobotoCondensed-Regular.ttf"; path = "../src/res/fonts/RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CC9488D5CCC84BBD90E5D6F5 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		5964B7CF15DA4A3BB3A0460B /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		DDA86459FEC3454D80503DEB /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		B139CDE119514E778AA6D176 /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +418,8 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				4D81D9FF1FB240378E8F70CC /* libRNVectorIcons.a in Frameworks */,
 				0C41671A21974C56940D6328 /* libRNShimmer.a in Frameworks */,
+				760B92417B7040A1B8DE25A6 /* libAirMaps.a in Frameworks */,
+				E7D1D51A81D64CA58AE8115C /* libBVLinearGradient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +608,8 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				3069CEF712AC4DF6859E33B0 /* RNVectorIcons.xcodeproj */,
 				308A425AD5B74E99AED651EA /* RNShimmer.xcodeproj */,
+				CC9488D5CCC84BBD90E5D6F5 /* AirMaps.xcodeproj */,
+				DDA86459FEC3454D80503DEB /* BVLinearGradient.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -650,6 +672,12 @@
 				51CA3AC35AFD4300BF8C25A8 /* Octicons.ttf */,
 				D45B318CF72844EA88F458AF /* SimpleLineIcons.ttf */,
 				24DC664F459F42509EB768A9 /* Zocial.ttf */,
+				357749560713434A828F08C4 /* RobotoCondensed-Bold.ttf */,
+				769C6D0C576D414DA6519041 /* RobotoCondensed-BoldItalic.ttf */,
+				F2643C0C379C47B1BF9BD90D /* RobotoCondensed-Italic.ttf */,
+				9B0F0DC706D9417391D816F8 /* RobotoCondensed-Light.ttf */,
+				98353BF7A4514159B3EEBA70 /* RobotoCondensed-LightItalic.ttf */,
+				206F3916C1834F9D9B38C852 /* RobotoCondensed-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1112,6 +1140,12 @@
 				140B328429704685AEDC8185 /* Octicons.ttf in Resources */,
 				678F3D1CA6DB49C58827AF67 /* SimpleLineIcons.ttf in Resources */,
 				2A4B639B99C04E3AA406B981 /* Zocial.ttf in Resources */,
+				184C3887F551428FA3E7E4ED /* RobotoCondensed-Bold.ttf in Resources */,
+				C61CA8C100994DC3A82B96AA /* RobotoCondensed-BoldItalic.ttf in Resources */,
+				487FBD69AA0B4B029611C0BD /* RobotoCondensed-Italic.ttf in Resources */,
+				751188710A1645BCAC5BE5F6 /* RobotoCondensed-Light.ttf in Resources */,
+				C6BFF4E32E344C53AA5C514C /* RobotoCondensed-LightItalic.ttf in Resources */,
+				486519B91F1746478F31CBB1 /* RobotoCondensed-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1247,11 +1281,15 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1274,11 +1312,15 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1302,6 +1344,8 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1324,6 +1368,8 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1355,11 +1401,15 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1391,11 +1441,15 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1426,11 +1480,15 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1461,11 +1519,15 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-shimmer/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;

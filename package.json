@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "i": "^0.3.6",
+    "moment": "^2.22.1",
     "npm": "^5.8.0",
     "react": "16.3.1",
     "react-native": "0.55.2",
     "react-native-maps": "^0.21.0",
     "react-native-material-ripple": "^0.8.0",
-    "react-native-md-textinput": "^2.0.4",
-    "react-native-router-flux": "^4.0.0-beta.28",
+    "react-native-router-flux": "^4.0.0-beta.27",
     "react-native-shimmer": "^0.3.2",
     "react-native-vector-icons": "^4.6.0"
   },
@@ -29,5 +29,10 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./src/res/fonts/"
+    ]
   }
 }

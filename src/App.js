@@ -6,53 +6,163 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
+	Platform,
+	StyleSheet,
+	Text,
+	View,
+	ToastAndroid,
+	BackHandler
 } from 'react-native';
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
+import {
+	Scene,
+	Router,
+	Actions,
+	Reducer,
+	ActionConst,
+	Overlay,
+	Tabs,
+	Modal,
+	Drawer,
+	Stack,
+	Lightbox,
+} from 'react-native-router-flux';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+let backButtonPressedOnceToExit = false;
+let currentSceneName = null;
+let exitCount = 0;
+
+const reducerCreate = params => {
+	const defaultReducer = new Reducer(params);
+	return (state, action) => {
+		// console.log('ACTION:', action);
+		return defaultReducer(state, action);
+	};
+};
+
+const getSceneStyle = () => ({
+    backgroundColor: backgroundContent,
+    shadowOpacity: 1,
+    shadowRadius: 3,
 });
+
+const onBackPress = () => {
+	let route = Actions.state.routes;
+	let topSection = route[route.length - 1]
+	let section = topSection.routes;
+	
+	switch (topSection.routeName) {
+		case "Main":
+			let tab = topSection.routes[0].index;
+			if(tab == 0) {
+                exitCount++;
+                ToastAndroid.showWithGravityAndOffset(
+                    'Tekan lagi untuk keluar',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    100
+                );
+                if(exitCount == 2) {
+                    exitCount = 0
+                    BackHandler.exitApp()
+                }
+            } else {
+                exitCount = 0
+                Actions.pop()
+            }
+            return true;
+			break;
+	
+		default:
+			Actions.pop();
+			return true;
+			break;
+	}
+};
+
+import TabBar from './components/TabBar';
+import SplashScreen from './views/splashscreen';
+import Login from './views/login';
+import Dashboard from './views/dashboard';
+import MainLokasi from './views/lokasi';
+
+import {colorPrimary, textColorButton, backgroundContent, shimmerPlaceholder, textColor} from './res/color';
 
 type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
+type State = {
+	login: Boolean
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default class App extends Component<Props, State> {
+
+	State = {
+		login: false
+	}
+
+	render() {
+		return (
+			<Router 
+				createReducer={reducerCreate} 
+				getSceneStyle={getSceneStyle}
+				backAndroidHandler={onBackPress}>
+				<Stack
+					key="root"
+					titleStyle={{ alignSelf: 'center' }}>
+					<Scene key="SplashScreen" component={SplashScreen} hideNavBar hideTabBar initial />
+					<Scene key="Login" component={Login} title="Login" hideNavBar type={ActionConst.REPLACE} />
+					<Scene key="Main" type={ActionConst.REPLACE} hideNavBar panHandlers={null}>
+						<Tabs
+                            key="tabbar"
+							swipeEnabled={false}
+                            tabBarComponent={ ({navigationState,jumpToIndex}) => <TabBar selectedIndex={navigationState.index} /> }
+                            showLabel={false}
+                            tabBarPosition={'bottom'}>
+                            <Stack
+                                key="tab_beranda"
+                                title="Beranda"
+								tabBarLabel="Beranda"
+								navigationBarStyle={{ backgroundColor: backgroundContent }}
+                                initial>
+                                <Scene key="Beranda" component={Dashboard} title="Beranda" titleStyle={{ color: textColor }} initial />
+                            </Stack>
+
+                            <Stack
+                                key="tab_notifikasi"
+                                title="Notifikasi"
+								tabBarLabel="Notifikasi"
+								navigationBarStyle={{ backgroundColor: backgroundContent }}>
+                                <Scene key="Notifikasi" component={Notifikasi} title="Notifikasi" titleStyle={{ color: textColor }}   initial />
+                            </Stack>
+                        
+                            <Stack
+                                key="tab_akun"
+                                title="Akun Saya"
+								tabBarLabel="Akun Saya"
+								navigationBarStyle={{ backgroundColor: backgroundContent }}>
+                                <Scene key="Akun" component={AkunSaya} title="Akun Saya" titleStyle={{ color: textColor }}  initial />
+                            </Stack>
+                        </Tabs>
+					</Scene>
+					<Scene key="MainLokasi" hideTabBar component={MainLokasi} title="Daftar Lokasi" titleStyle={{ color: textColor }} />
+				</Stack>
+			</Router>
+		);
+	}
+}
+
+class Notifikasi extends Component {
+	render() {
+		return (
+			<View><Text>Notifikasi</Text></View>
+		)
+	}
+}
+
+class AkunSaya extends Component {
+	render() {
+		return (
+			<View><Text>Akun Saya</Text></View>
+		)
+	}
+}
