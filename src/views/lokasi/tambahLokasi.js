@@ -14,12 +14,25 @@ import { colorPrimaryDark, shimmerPlaceholder, colorPrimaryLight, textColorButto
 import Text from '../../components/Text';
 import TextInput from '../../components/TextInput';
 
-type Props = {};
+let addressFilter = (addr, frmt) => {
+    for(let i in addr) {
+        var filter = addr[i].types.filter(function(txt) {
+            return txt === frmt
+        })
+        if(filter.length > 0) {
+            return addr[i].long_name;
+        }
+    }
+}
+
+type Props = {
+    address: object
+};
 type State = {
     namaLokasi: string,
     alamat: string,
     kodepos: string,
-    location: object
+    pinalamat: object
 };
 
 export default class TambahLokasi extends Component<Props, State> {
@@ -28,11 +41,30 @@ export default class TambahLokasi extends Component<Props, State> {
         namaLokasi: "",
         alamat: "",
         kodepos: "",
-        location: {}
+        pinalamat: {}
     }
 
     componentWillReceiveProps(nextProps) {
         console.log('nextProps ==>', nextProps);
+        this.setState({
+            pinalamat: nextProps.address != undefined && Object.keys(nextProps.address).length > 0 ? {
+                "id": nextProps.address.id,
+                "name": nextProps.address.name,
+                "premise": addressFilter(nextProps.address.address_components, "premise"),
+                "route": addressFilter(nextProps.address.address_components, "route"),
+                "location": nextProps.address.geometry.location,
+                "administrative_area_level_1": addressFilter(nextProps.address.address_components, "administrative_area_level_1"),
+                "administrative_area_level_2": addressFilter(nextProps.address.address_components, "administrative_area_level_2"),
+                "administrative_area_level_3": addressFilter(nextProps.address.address_components, "administrative_area_level_3"),
+                "administrative_area_level_4": addressFilter(nextProps.address.address_components, "administrative_area_level_4"),
+                "street_number": addressFilter(nextProps.address.address_components, "street_number"),
+                "country": addressFilter(nextProps.address.address_components, "country"),
+                "postal_code": addressFilter(nextProps.address.address_components, "postal_code"),
+                "formatted_address": nextProps.address.formatted_address,
+                "countryCode":"ID",
+                "locale":"en_US",
+            } : {}
+        })
     }
 
     render() {
@@ -94,11 +126,12 @@ export default class TambahLokasi extends Component<Props, State> {
                         </Button>
                     </View>
                 </View>
-
-                <View style={{ width: '100%', paddingLeft: 16, paddingTop: 5, justifyContent: 'center' }}>
-                    <Text bold small style={{ color: textColor }}>Tester</Text>
-                    <Text small style={{ color: textColor }}>Lorem Ipsum Dollor</Text>
-                </View>
+                
+                { Object.keys(this.state.pinalamat).length > 0 ? 
+                    <View style={{ width: '100%', paddingLeft: 16, paddingTop: 5, justifyContent: 'center' }}>
+                    <Text bold small style={{ color: textColor }}>{this.state.pinalamat.name}</Text>
+                    <Text small style={{ color: textColor }}>{this.state.pinalamat.formatted_address}</Text>
+                </View> : <View /> }
 
                 <View style={{ height: 80, padding: 16 }}>
                     <Button 

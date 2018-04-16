@@ -88,6 +88,7 @@ import Dashboard from './views/dashboard';
 import MainLokasi from './views/lokasi';
 import TambahLokasi from './views/lokasi/tambahLokasi';
 import Map from './views/maps';
+import MainNotifikasi from './views/notifikasi';
 
 import {colorPrimary, textColorButton, backgroundContent, shimmerPlaceholder, textColor} from './res/color';
 
@@ -134,7 +135,7 @@ export default class App extends Component<Props, State> {
                                 title="Notifikasi"
 								tabBarLabel="Notifikasi"
 								navigationBarStyle={{ backgroundColor: backgroundContent }}>
-                                <Scene key="Notifikasi" component={Notifikasi} title="Notifikasi" titleStyle={{ color: textColor }}   initial />
+                                <Scene key="Notifikasi" component={MainNotifikasi} title="Notifikasi" titleStyle={{ color: textColor }}   initial />
                             </Stack>
                         
                             <Stack
@@ -152,14 +153,6 @@ export default class App extends Component<Props, State> {
 				</Stack>
 			</Router>
 		);
-	}
-}
-
-class Notifikasi extends Component {
-	render() {
-		return (
-			<View><Text>Notifikasi</Text></View>
-		)
 	}
 }
 

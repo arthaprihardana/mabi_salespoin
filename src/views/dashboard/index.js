@@ -2,7 +2,7 @@
  * @author: Artha Prihardana 
  * @Date: 2018-04-15 14:43:37 
  * @Last Modified by: Artha Prihardana
- * @Last Modified time: 2018-04-16 10:43:55
+ * @Last Modified time: 2018-04-17 00:04:48
  */
 import React, { Component } from 'react';
 import { View, ScrollView, Image } from 'react-native';
@@ -42,21 +42,47 @@ export default class Dashboard extends Component<Props, State> {
                         <Text h6 bold>1 Maret 2018</Text>
                     </View>
                     
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', elevation: 3, marginTop: 32, paddingLeft: 16, paddingRight: 16 }}>
-                        <Button onPress={() => Actions.jump("TambahLokasi") } style={{ width: '48%', justifyContent: 'center' }}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', height: 100, borderRadius: 10, borderWidth: 1.5, borderColor: shimmerPlaceholder }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', elevation: 3, marginTop: 26, paddingLeft: 16, paddingRight: 16 }}>
+                        <Button onPress={() => Actions.jump("TambahLokasi") } style={{ width: '48%', justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', height: 80, width: 80, borderRadius: 10, borderWidth: 1.5, borderColor: shimmerPlaceholder }}>
                                 <Icon name="add-circle" size={52} color={colorPrimary} />
-                                <Text>Tambah Lokasi</Text>
+                                {/* <Text>Tambah Lokasi</Text> */}
                             </View>
+                            <Text>Tambah Lokasi</Text>
                         </Button>
 
-                        <Button onPress={() => Actions.jump("MainLokasi", { refresh: true }) } style={{ width: '48%', justifyContent: 'center' }}>
-                            <View style={{ justifyContent: 'center', alignItems: 'center', height: 100, borderRadius: 10, borderWidth: 1.5, borderColor: shimmerPlaceholder }}>
+                        <Button onPress={() => Actions.jump("MainLokasi", { refresh: true }) } style={{ width: '48%', justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ justifyContent: 'center', alignItems: 'center', height: 80, width: 80, borderRadius: 10, borderWidth: 1.5, borderColor: shimmerPlaceholder }}>
                                 <Icon name="library-books" size={52} color={colorPrimary} />
-                                <Text>Daftar Lokasi</Text>
+                                {/* <Text>Daftar Lokasi</Text> */}
                             </View>
+                            <Text>Daftar Lokasi</Text>
                         </Button>
                     </View>
+
+                    <View style={{ flexDirection: 'column', paddingLeft: 16, paddingRight: 16, marginTop: 26 }}>
+                        <Text h6 bold style={{ marginBottom: 16 }}>Mau mengantar barang kemana hari ini ?</Text>
+
+                        <View style={{ borderWidth: 1, borderColor: shimmerPlaceholder, padding: 8, marginBottom: 10 }}>
+                            <Text bold>Alfamart Berkah</Text>
+                            <Text>Lorem ipsum dolor sit amet</Text>
+                        </View>
+
+                        <View style={{ borderWidth: 1, borderColor: shimmerPlaceholder, padding: 8, marginBottom: 10 }}>
+                            <Text bold>Alfamart Berkah</Text>
+                            <Text>Lorem ipsum dolor sit amet</Text>
+                        </View>
+
+                        <View style={{ borderWidth: 1, borderColor: shimmerPlaceholder, padding: 8, marginBottom: 10 }}>
+                            <Text bold>Alfamart Berkah</Text>
+                            <Text>Lorem ipsum dolor sit amet</Text>
+                        </View>
+
+                        <Button onPress={() => Actions.jump("MainLokasi", { refresh: true })} style={{ padding: 8, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text bold style={{ color: colorPrimaryDark }}>Selengkapnya >></Text>
+                        </Button>
+                    </View>
+
                 </View>
             </ScrollView>
         )
