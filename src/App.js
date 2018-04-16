@@ -86,6 +86,8 @@ import SplashScreen from './views/splashscreen';
 import Login from './views/login';
 import Dashboard from './views/dashboard';
 import MainLokasi from './views/lokasi';
+import TambahLokasi from './views/lokasi/tambahLokasi';
+import Map from './views/maps';
 
 import {colorPrimary, textColorButton, backgroundContent, shimmerPlaceholder, textColor} from './res/color';
 
@@ -145,6 +147,8 @@ export default class App extends Component<Props, State> {
                         </Tabs>
 					</Scene>
 					<Scene key="MainLokasi" hideTabBar component={MainLokasi} title="Daftar Lokasi" titleStyle={{ color: textColor }} />
+					<Scene key="TambahLokasi" hideTabBar component={TambahLokasi} title="Tambah Lokasi" titleStyle={{ color: textColor }} />
+					<Scene key="Map" hideTabBar hideNavBar component={Map} title="Tandai Lokasi" />
 				</Stack>
 			</Router>
 		);

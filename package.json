@@ -13,6 +13,7 @@
     "npm": "^5.8.0",
     "react": "16.3.1",
     "react-native": "0.55.2",
+    "react-native-geolocation-service": "^1.0.3",
     "react-native-maps": "^0.21.0",
     "react-native-material-ripple": "^0.8.0",
     "react-native-router-flux": "^4.0.0-beta.27",

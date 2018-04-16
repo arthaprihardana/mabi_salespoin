@@ -2,7 +2,7 @@
  * @author: Artha Prihardana 
  * @Date: 2018-04-15 14:43:37 
  * @Last Modified by: Artha Prihardana
- * @Last Modified time: 2018-04-15 21:40:42
+ * @Last Modified time: 2018-04-16 10:43:55
  */
 import React, { Component } from 'react';
 import { View, ScrollView, Image } from 'react-native';
@@ -43,7 +43,7 @@ export default class Dashboard extends Component<Props, State> {
                     </View>
                     
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', elevation: 3, marginTop: 32, paddingLeft: 16, paddingRight: 16 }}>
-                        <Button style={{ width: '48%', justifyContent: 'center' }}>
+                        <Button onPress={() => Actions.jump("TambahLokasi") } style={{ width: '48%', justifyContent: 'center' }}>
                             <View style={{ justifyContent: 'center', alignItems: 'center', height: 100, borderRadius: 10, borderWidth: 1.5, borderColor: shimmerPlaceholder }}>
                                 <Icon name="add-circle" size={52} color={colorPrimary} />
                                 <Text>Tambah Lokasi</Text>
