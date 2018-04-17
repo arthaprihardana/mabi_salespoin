@@ -41,7 +41,7 @@ const reducerCreate = params => {
 };
 
 const getSceneStyle = () => ({
-    backgroundColor: backgroundContent,
+    backgroundColor: backgroundSecondContent,
     shadowOpacity: 1,
     shadowRadius: 3,
 });
@@ -89,8 +89,11 @@ import MainLokasi from './views/lokasi';
 import TambahLokasi from './views/lokasi/tambahLokasi';
 import Map from './views/maps';
 import MainNotifikasi from './views/notifikasi';
+import DetailNotifikasi from './views/notifikasi/detail';
+import AkunSaya from './views/akunsaya';
+import PosisiBarang from './views/posisibarang';
 
-import {colorPrimary, textColorButton, backgroundContent, shimmerPlaceholder, textColor} from './res/color';
+import {colorPrimary, textColorButton, backgroundContent, shimmerPlaceholder, textColor, backgroundSecondContent} from './res/color';
 
 type Props = {};
 type State = {
@@ -150,16 +153,10 @@ export default class App extends Component<Props, State> {
 					<Scene key="MainLokasi" hideTabBar component={MainLokasi} title="Daftar Lokasi" titleStyle={{ color: textColor }} />
 					<Scene key="TambahLokasi" hideTabBar component={TambahLokasi} title="Tambah Lokasi" titleStyle={{ color: textColor }} />
 					<Scene key="Map" hideTabBar hideNavBar component={Map} title="Tandai Lokasi" />
+					<Scene key="DetailNotifikasi" hideTabBar component={DetailNotifikasi} back={true} title={"Notifikasi"} titleStyle={{ color: textColor }} />
+					<Scene key="PosisiBarang" hideTabBar component={PosisiBarang} back={true} title={"Update Lokasi Barang"} titleStyle={{ color: textColor }} />
 				</Stack>
 			</Router>
 		);
-	}
-}
-
-class AkunSaya extends Component {
-	render() {
-		return (
-			<View><Text>Akun Saya</Text></View>
-		)
 	}
 }

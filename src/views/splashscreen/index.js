@@ -2,7 +2,7 @@
  * @author: Artha Prihardana 
  * @Date: 2018-04-15 09:15:53 
  * @Last Modified by: Artha Prihardana
- * @Last Modified time: 2018-04-15 14:50:06
+ * @Last Modified time: 2018-04-17 14:25:36
  */
 import React, { Component } from 'react';
 import {
@@ -41,8 +41,7 @@ export default class SplashScreen extends Component<State> {
             if (value !== null){
                 timeout = setTimeout(() => Actions.jump("Main"), time);
             } else {
-                // timeout = setTimeout(() => Actions.jump("Login"), time);
-                timeout = setTimeout(() => Actions.jump("Main"), time);
+                timeout = setTimeout(() => Actions.jump("Login"), time);
             }
         } catch (error) {
             timeout = setTimeout(() => Actions.jump("Login"), time);

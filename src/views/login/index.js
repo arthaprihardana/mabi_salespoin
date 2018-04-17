@@ -2,7 +2,7 @@
  * @author: Artha Prihardana 
  * @Date: 2018-04-15 10:59:52 
  * @Last Modified by: Artha Prihardana
- * @Last Modified time: 2018-04-15 14:24:38
+ * @Last Modified time: 2018-04-17 14:43:59
  */
 import React, { Component } from 'react';
 import { View, AsyncStorage, Keyboard, StatusBar, KeyboardAvoidingView, Image } from 'react-native';
@@ -12,9 +12,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { colorPrimary, backgroundContent, shimmerPlaceholder, colorPrimaryDark } from '../../res/color';
 import Text from '../../components/Text';
 import TextInput from '../../components/TextInput';
+import Loading from '../../components/Loading';
 
 type Props = {};
 type State = {
+    loading: boolean,
     username: string,
     password: string
 };
@@ -23,7 +25,8 @@ export default class Login extends Component<Props, State> {
 
     state = {
         username: '',
-        password: ''
+        password: '',
+        loading: false
     }
 
     render() {
@@ -70,7 +73,12 @@ export default class Login extends Component<Props, State> {
                         onPress={() => {
                             if (this.state.username != "" && this.state.password != "" ) {
                                 Keyboard.dismiss();
-                                Actions.replace('Main', {});
+                                this.setState({ loading: true }, () => {
+                                    setTimeout(() => {
+                                        this.setState({ loading: false })
+                                        Actions.replace('Main', {});
+                                    }, 3000);
+                                })
                             } else {
                                 return false;
                             }
@@ -79,6 +87,8 @@ export default class Login extends Component<Props, State> {
 						<Text style={{ color: '#fff'}}>Masuk</Text>
 					</Button>
 				</View>
+
+                { this.state.loading ? <Loading /> : <View /> }
             </View>
         )
     }
