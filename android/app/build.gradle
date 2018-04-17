@@ -98,7 +98,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.rn_salespoin"
+        applicationId "com.artha.salespoin"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch

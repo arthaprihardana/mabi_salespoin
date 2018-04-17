@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "rn_salespoin-tvOS.app"
-               BlueprintName = "rn_salespoin-tvOS"
-               ReferencedContainer = "container:rn_salespoin.xcodeproj">
+               BuildableName = "SalesPoin-tvOS.app"
+               BlueprintName = "SalesPoin-tvOS"
+               ReferencedContainer = "container:SalesPoin.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "rn_salespoin-tvOSTests.xctest"
-               BlueprintName = "rn_salespoin-tvOSTests"
-               ReferencedContainer = "container:rn_salespoin.xcodeproj">
+               BuildableName = "SalesPoin-tvOSTests.xctest"
+               BlueprintName = "SalesPoin-tvOSTests"
+               ReferencedContainer = "container:SalesPoin.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "rn_salespoin-tvOSTests.xctest"
-               BlueprintName = "rn_salespoin-tvOSTests"
-               ReferencedContainer = "container:rn_salespoin.xcodeproj">
+               BuildableName = "SalesPoin-tvOSTests.xctest"
+               BlueprintName = "SalesPoin-tvOSTests"
+               ReferencedContainer = "container:SalesPoin.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "rn_salespoin-tvOS.app"
-            BlueprintName = "rn_salespoin-tvOS"
-            ReferencedContainer = "container:rn_salespoin.xcodeproj">
+            BuildableName = "SalesPoin-tvOS.app"
+            BlueprintName = "SalesPoin-tvOS"
+            ReferencedContainer = "container:SalesPoin.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "rn_salespoin-tvOS.app"
-            BlueprintName = "rn_salespoin-tvOS"
-            ReferencedContainer = "container:rn_salespoin.xcodeproj">
+            BuildableName = "SalesPoin-tvOS.app"
+            BlueprintName = "SalesPoin-tvOS"
+            ReferencedContainer = "container:SalesPoin.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -113,9 +113,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "rn_salespoin-tvOS.app"
-            BlueprintName = "rn_salespoin-tvOS"
-            ReferencedContainer = "container:rn_salespoin.xcodeproj">
+            BuildableName = "SalesPoin-tvOS.app"
+            BlueprintName = "SalesPoin-tvOS"
+            ReferencedContainer = "container:SalesPoin.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

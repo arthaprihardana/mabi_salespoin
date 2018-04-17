@@ -1,4 +1,4 @@
-package com.rn_salespoin;
+package com.artha.salespoin;
 
 import android.app.Application;
 
