@@ -73,7 +73,10 @@ const onBackPress = () => {
             }
             return true;
 			break;
-	
+		case "Login":
+			BackHandler.exitApp();
+			return true;
+			break;
 		default:
 			Actions.pop();
 			return true;
