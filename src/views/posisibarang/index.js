@@ -2,7 +2,7 @@
  * @author: Artha Prihardana 
  * @Date: 2018-04-17 13:49:29 
  * @Last Modified by: Artha Prihardana
- * @Last Modified time: 2018-04-17 14:13:36
+ * @Last Modified time: 2018-04-20 14:29:32
  */
 import React, { Component } from 'react';
 import { View, ScrollView, Picker } from 'react-native';
@@ -12,6 +12,7 @@ import { Actions } from 'react-native-router-flux';
 import moment from 'moment';
 import { backgroundContent, colorPrimaryDark, shimmerPlaceholder } from '../../res/color';
 require('moment/locale/id');
+import Radio from '../../components/Radio';
 
 type Props = {};
 type State = {
@@ -21,7 +22,7 @@ type State = {
 export default class PosisiBarang extends Component<Props, State> {
 
     state = {
-        kategoriBarang: ""
+        kategoriBarang: "",
     }
 
     render() {
@@ -40,15 +41,27 @@ export default class PosisiBarang extends Component<Props, State> {
                 </View>
                 
                 <View style={{ minHeight: 80, padding: 16, backgroundColor: backgroundContent, elevation: 2 }}>
-                    <Text style={{ marginBottom: 8 }}>Kategori Barang</Text>
-                    <Picker
-                        mode={"dropdown"}
-                        selectedValue={this.state.kategoriBarang}
-                        style={{ height: 50, width: '100%' }}
-                        onValueChange={(itemValue, itemIndex) => this.setState({kategoriBarang: itemValue})}>
-                        <Picker.Item label="Kotak Amal" value="java" />
-                        <Picker.Item label="Aksesoris Handphone" value="js" />
-                    </Picker>
+                    <View style={{ marginBottom: 16 }}>
+                        <Text style={{ marginBottom: 8 }}>Kategori Barang</Text>
+                        <Picker
+                            mode={"dropdown"}
+                            selectedValue={this.state.kategoriBarang}
+                            style={{ height: 50, width: '100%' }}
+                            onValueChange={(itemValue, itemIndex) => this.setState({kategoriBarang: itemValue})}>
+                            <Picker.Item label="Kotak Amal" value="java" />
+                            <Picker.Item label="Aksesoris Handphone" value="js" />
+                        </Picker>
+                    </View>
+
+                    <View>
+                        <Text style={{ marginBottom: 8 }}>Status</Text>
+                        <Radio 
+                            values={[{key: 1, value: "Simpan Barang"}, {key: 2, value: "Ambil Barang"}]}
+                            callbackFromParent={ data => {
+                                console.log('data ==>', data)
+                            }} 
+                        />
+                    </View>
                 </View>
 
                 <View style={{ height: 80, padding: 16 }}>
