@@ -2,10 +2,10 @@
  * @author: Artha Prihardana 
  * @Date: 2018-04-15 10:59:52 
  * @Last Modified by: Artha Prihardana
- * @Last Modified time: 2018-04-17 14:43:59
+ * @Last Modified time: 2018-07-10 21:16:09
  */
 import React, { Component } from 'react';
-import { View, AsyncStorage, Keyboard, StatusBar, KeyboardAvoidingView, Image } from 'react-native';
+import { View, AsyncStorage, Keyboard, StatusBar, KeyboardAvoidingView, Image, Alert } from 'react-native';
 import Button from 'react-native-material-ripple';
 import { Actions } from 'react-native-router-flux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -13,6 +13,7 @@ import { colorPrimary, backgroundContent, shimmerPlaceholder, colorPrimaryDark }
 import Text from '../../components/Text';
 import TextInput from '../../components/TextInput';
 import Loading from '../../components/Loading';
+import {loginService} from '../../services/loginService';
 
 type Props = {};
 type State = {
@@ -27,6 +28,44 @@ export default class Login extends Component<Props, State> {
         username: '',
         password: '',
         loading: false
+    }
+
+    fetchLogin() {
+        loginService(this.state.username, this.state.password).then(val => {
+            console.log('response login ==>', val);
+            if(val.status) {
+                AsyncStorage.multiSet([
+                    ['@global:user', JSON.stringify(val.data)],
+                    ['@global:token', JSON.stringify(val.options)]
+                ], (result) => {
+                    this.setState({ loading: false }, () => {
+                        Actions.replace('Main', {});
+                    })
+                })
+            } else {
+                this.setState({ loading: false }, () => {
+                    Alert.alert(
+                        'Pesan',
+                        `${val.errMessage}`,
+                        [
+                            {text: 'OK', onPress: () => console.log('OK Pressed')},
+                        ],
+                        { cancelable: false }
+                    )
+                })
+            }
+        }).catch(err => {
+            this.setState({ loading: false }, () => {
+                Alert.alert(
+                    'Pesan',
+                    `${err}`,
+                    [
+                        {text: 'OK', onPress: () => console.log('OK Pressed')},
+                    ],
+                    { cancelable: false }
+                )
+            })
+        })
     }
 
     render() {
@@ -74,10 +113,7 @@ export default class Login extends Component<Props, State> {
                             if (this.state.username != "" && this.state.password != "" ) {
                                 Keyboard.dismiss();
                                 this.setState({ loading: true }, () => {
-                                    setTimeout(() => {
-                                        this.setState({ loading: false })
-                                        Actions.replace('Main', {});
-                                    }, 3000);
+                                    this.fetchLogin();
                                 })
                             } else {
                                 return false;
@@ -88,7 +124,7 @@ export default class Login extends Component<Props, State> {
 					</Button>
 				</View>
 
-                { this.state.loading ? <Loading /> : <View /> }
+                <Loading visible={this.state.loading} />
             </View>
         )
     }

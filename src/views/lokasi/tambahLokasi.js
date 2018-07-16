@@ -5,7 +5,7 @@
  * @Last Modified time: 2018-04-16 18:40:00
  */
 import React, { Component } from 'react';
-import { View, ScrollView, Keyboard, StyleSheet } from 'react-native';
+import { View, ScrollView, Keyboard, StyleSheet, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Button from 'react-native-material-ripple';
@@ -13,6 +13,8 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { colorPrimaryDark, shimmerPlaceholder, colorPrimaryLight, textColorButton, textColor } from '../../res/color';
 import Text from '../../components/Text';
 import TextInput from '../../components/TextInput';
+import {postLokasi} from '../../services/lokasiService';
+import Loading from '../../components/Loading';
 
 let addressFilter = (addr, frmt) => {
     for(let i in addr) {
@@ -32,7 +34,8 @@ type State = {
     namaLokasi: string,
     alamat: string,
     kodepos: string,
-    pinalamat: object
+    pinalamat: object,
+    loading: boolean
 };
 
 export default class TambahLokasi extends Component<Props, State> {
@@ -41,7 +44,8 @@ export default class TambahLokasi extends Component<Props, State> {
         namaLokasi: "",
         alamat: "",
         kodepos: "",
-        pinalamat: {}
+        pinalamat: {},
+        loading: false
     }
 
     componentWillReceiveProps(nextProps) {
@@ -52,7 +56,7 @@ export default class TambahLokasi extends Component<Props, State> {
                 "name": nextProps.address.name,
                 "premise": addressFilter(nextProps.address.address_components, "premise"),
                 "route": addressFilter(nextProps.address.address_components, "route"),
-                "location": nextProps.address.geometry.location,
+                "location": `${nextProps.address.geometry.location.lng},${nextProps.address.geometry.location.lat}`,
                 "administrative_area_level_1": addressFilter(nextProps.address.address_components, "administrative_area_level_1"),
                 "administrative_area_level_2": addressFilter(nextProps.address.address_components, "administrative_area_level_2"),
                 "administrative_area_level_3": addressFilter(nextProps.address.address_components, "administrative_area_level_3"),
@@ -64,12 +68,64 @@ export default class TambahLokasi extends Component<Props, State> {
                 "countryCode":"ID",
                 "locale":"en_US",
             } : {}
-        })
+        }, ()=>this.forceUpdate())
+    }
+
+    handleValidate() {
+        if(this.state.namaLokasi === "") {
+            alert('Nama lokasi harap diisi');
+            return false;
+        }
+        if(this.state.alamat === "") {
+            alert('Alamat harap diisi');
+            return false;
+        }
+        return true;
+    }
+
+    handlePostAddLokasi() {
+        if(this.handleValidate()) {
+            this.setState({ loading: true })
+            postLokasi({
+                namaLokasi: this.state.namaLokasi,
+                alamat: this.state.alamat,
+                gmaps: this.state.pinalamat
+            }).then(response => {
+                console.log('response ==>', response);
+                if(response.status) {
+                    this.setState({ loading: false }, () => {
+                        Alert.alert(
+                            'Info',
+                            'Lokasi penyimpanan barang telah ditambahkan',
+                            [
+                                {text: 'OK', onPress: () => Actions.reset('Main')},
+                            ],
+                            { cancelable: false }
+                        )
+                    });
+                } else {
+                    let msg = response.errMessage.split(':');
+                    this.setState({ loading: false }, () => {
+                        Alert.alert(
+                            'Info',
+                            `${msg[msg.length-1]}`,
+                            [
+                                {text: 'OK', onPress: () => {}},
+                            ],
+                            { cancelable: false }
+                        )
+                    });
+                }
+            }).catch(err => {
+                console.log('error ==>', error);
+                this.setState({ loading: false })
+            })
+        }
     }
 
     render() {
         return(
-            <ScrollView style={{ flex: 1 }}>
+            <ScrollView style={{ flex: 1 }} keyboardShouldPersistTaps={'always'}>
                 <View style={{ height: 80, padding: 16 }}>
                     <TextInput 
                         ref={ ref => this.namalokasi = ref }
@@ -94,7 +150,7 @@ export default class TambahLokasi extends Component<Props, State> {
                         label={'Alamat'} />
                 </View>
 
-                <View style={{ height: 80, padding: 16 }}>
+                {/* <View style={{ height: 80, padding: 16 }}>
                     <TextInput 
                         ref={ ref => this.kodepos = ref }
                         onSubmitEditing={()=> {}}
@@ -106,7 +162,7 @@ export default class TambahLokasi extends Component<Props, State> {
                         value={this.state.kodepos}
                         label={'Kode Pos'} />
                     <Text small>* opsional</Text>
-                </View>
+                </View> */}
 
                 <View style={{ height: 150, padding: 16, marginTop: 16 }}>
                     <Text>Tandai Alamat</Text>
@@ -121,7 +177,10 @@ export default class TambahLokasi extends Component<Props, State> {
                         provider={PROVIDER_GOOGLE}
                         />
                     <View style={{ backgroundColor: 'rgba(255,255,255,0.4)', width: '100%', height: 110, position: 'absolute', top:40, left: 16, justifyContent: 'center', alignItems: 'center'}}>
-                        <Button onPress={() => Actions.Map() } style={{ backgroundColor: colorPrimaryLight, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 15 }}>
+                        <Button onPress={() => {
+                            Keyboard.dismiss();
+                            Actions.Map() 
+                        }} style={{ backgroundColor: colorPrimaryLight, width: 100, height: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 15 }}>
                             <Text small style={{ color: textColorButton }}>Tandai Lokasi</Text>
                         </Button>
                     </View>
@@ -135,11 +194,13 @@ export default class TambahLokasi extends Component<Props, State> {
 
                 <View style={{ height: 80, padding: 16 }}>
                     <Button 
-                        onPress={() => {}} 
+                        onPress={() => this.handlePostAddLokasi()} 
                         style={{ backgroundColor: colorPrimaryDark, height: 52, justifyContent: 'center', alignItems: 'center', borderRadius: 0 }}>	
 						<Text style={{ color: '#fff'}}>Tambah Lokasi</Text>
 					</Button>
                 </View>
+
+                <Loading visible={this.state.loading} />
             </ScrollView>
         )
     }

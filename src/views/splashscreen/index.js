@@ -37,7 +37,7 @@ export default class SplashScreen extends Component<State> {
 
     async checkLogin() {
         try {
-            const value = await AsyncStorage.getItem('@global:user');
+            const value = await AsyncStorage.getItem('@global:token');
             if (value !== null){
                 timeout = setTimeout(() => Actions.jump("Main"), time);
             } else {

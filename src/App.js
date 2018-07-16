@@ -114,7 +114,8 @@ export default class App extends Component<Props, State> {
 			<Router 
 				createReducer={reducerCreate} 
 				getSceneStyle={getSceneStyle}
-				backAndroidHandler={onBackPress}>
+				backAndroidHandler={onBackPress}
+				sceneStyle={{ backgroundColor: '#FFF' }}>
 				<Stack
 					key="root"
 					titleStyle={{ alignSelf: 'center' }}>

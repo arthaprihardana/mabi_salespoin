@@ -2,16 +2,17 @@
  * @author: Artha Prihardana 
  * @Date: 2018-04-15 19:06:49 
  * @Last Modified by: Artha Prihardana
- * @Last Modified time: 2018-04-17 13:59:08
+ * @Last Modified time: 2018-07-11 22:39:17
  */
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, Image, Animated, FlatList } from 'react-native';
-import Shimmer from 'react-native-shimmer';
+import { View, RefreshControl, ListView } from 'react-native';
 import Button from 'react-native-material-ripple';
+import Placeholder from 'rn-placeholder';
 import Text from '../../components/Text';
-import {shimmerPlaceholder, backgroundContent, colorPrimaryDark, textColorButton, colorPrimary} from '../../res/color';
+import {shimmerPlaceholder, backgroundContent, textColorButton, colorPrimary} from '../../res/color';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { getLokasiByAgen } from '../../services/lokasiService';
 
 type Props = {};
 type State = {
@@ -21,17 +22,19 @@ type State = {
 };
 
 let timeout;
+let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class MainLokasi extends Component<Props, State> {
 
     state = {
         loading: false,
-        data: [
-            {title: 'Alfamart Berkah', description: 'Jln Raya Tanjung Duren 31', key: 'item1'},
-            {title: 'Alfamart Berkah', description: 'Jln Raya Tanjung Duren 31', key: 'item2'},
-            {title: 'Alfamart Berkah', description: 'Jln Raya Tanjung Duren 31', key: 'item3'},
-            {title: 'Alfamart Berkah', description: 'Jln Raya Tanjung Duren 31', key: 'item4'}
-        ]
+        token: {},
+        user: {},
+        data: ds.cloneWithRows([]),
+        refreshing: false,
+        isReady: false,
+        page: 1,
+        limit: 25
     }
 
     separator = ({ highlighted }) => <View style={[{
@@ -39,43 +42,88 @@ export default class MainLokasi extends Component<Props, State> {
         borderBottomWidth: .5
     }, highlighted]} />;
 
+    componentDidMount() {
+        this.handleGetLokasyByAgen()
+    }
+    
+
     renderItem(item, index) {
         return (
-            <Button onPress={() => Actions.jump("PosisiBarang", {}) } key={index.toString()} style={{ padding: 16, width: '100%', backgroundColor: backgroundContent }}>
-                <Text bold>{item.title}</Text>
-                <Text>{item.description}</Text>
+            <Button onPress={() => Actions.jump("PosisiBarang", {lokasi: item}) } key={index} style={{ padding: 16, width: '100%', backgroundColor: backgroundContent }}>
+                <Text bold>{item.namaLokasi}</Text>
+                <Text>{item.alamat}</Text>
             </Button>
         )
     }
-    
-    loading() {
-        return (
-            <View style={{ padding: 16, flexDirection: 'column', height: 100, justifyContent: 'space-between' }}>
-                <Shimmer animating={true} direction={"right"} duration={1000} animationOpacity={0.8} intensity={0}>
-                    <View style={{ height: 14, width: '100%', backgroundColor: shimmerPlaceholder }} />
-                </Shimmer>
 
-                <Shimmer animating={true} direction={"right"} duration={1000} animationOpacity={0.8} intensity={0}>
-                    <View style={{ height: 14, width: '60%', backgroundColor: shimmerPlaceholder }} />
-                </Shimmer>
+    handleGetLokasyByAgen() {
+        getLokasiByAgen(this.state.limit, this.state.page).then(result => {
+            if(result.data.length > 0) {
+                this.setState({
+                    refreshing: false,
+                    isReady: true,
+                    totalLokasi: result.options.total,
+                    data: this.state.data.cloneWithRows(result.data)
+                }, () => this.forceUpdate());
+            } else {
+                this.setState({
+                    refreshing: false,
+                    isReady: true,
+                });
+            }
+        })
+    }
 
-                <Shimmer animating={true} direction={"right"} duration={1000} animationOpacity={0.8} intensity={0}>
-                    <View style={{ height: 14, width: '80%', backgroundColor: shimmerPlaceholder }} />
-                </Shimmer>
-            </View>
-        )
+    onRefresh() {
+        this.setState({
+            refreshing: true,
+            // page: this.state.page + 1,
+        }, () => this.handleGetLokasyByAgen());
     }
 
     render() {
-        console.log('this.props ==>', this.props);
         return(
             <View style={{ flex: 1 }}>
-                <FlatList
-                    ItemSeparatorComponent={this.separator}
-                    ListEmptyComponent={() => {}}
-                    data={this.state.data}
-                    renderItem={({item, index}) => this.renderItem(item, index)}
-                    />
+                {!this.state.isReady ? 
+                <View>
+                    <View style={{ padding: 16, width: '100%' }}>
+                        <Placeholder.Paragraph
+                            size={60}
+                            textSize={12}
+                            animate="fade"
+                            lineNumber={3}
+                            lineSpacing={5}
+                            firstLineWidth="50%"
+                            onReady={this.state.isReady}
+                            /> 
+                    </View>
+                    <View style={{ padding: 16, width: '100%' }}>
+                        <Placeholder.Paragraph
+                            size={60}
+                            textSize={12}
+                            animate="fade"
+                            lineNumber={3}
+                            lineSpacing={5}
+                            firstLineWidth="50%"
+                            onReady={this.state.isReady}
+                            /> 
+                    </View> 
+                </View> : 
+                <ListView
+                    renderSeparator={this.separator}
+                    enableEmptySections={true}
+                    dataSource={this.state.data}
+                    renderRow={(item, index) => this.renderItem(item, index)}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this.onRefresh.bind(this)}
+                            colors={[colorPrimary]}
+                        />
+                    }
+                    /> 
+                }
+
                 <Button 
                     onPress={() => Actions.jump("TambahLokasi", {}) }
                     style={{
